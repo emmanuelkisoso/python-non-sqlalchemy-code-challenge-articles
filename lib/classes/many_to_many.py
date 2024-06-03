@@ -61,7 +61,7 @@ class Author:
     def topic_areas(self):
         if not self.articles():
             return None
-        return list(set([magazine.catergory for magazine in self.magazines()]))
+        return list(set([magazine.category for magazine in self.magazines()]))
 
 class Magazine:
     def __init__(self, name, category):
@@ -105,5 +105,8 @@ class Magazine:
 
     def contributing_authors(self):
         if not self.articles():
+            return None
+        authors = self.contributors()
+        if not authors:
             return None
         return [author for author in self.contributors() if len(author.articles()) > 2]
